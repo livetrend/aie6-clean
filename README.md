@@ -5,6 +5,72 @@
 
 ## <h1 align="center" id="heading">Session 2: Embeddings and RAG</h1>
 
+# Why We Created This New Repository
+
+This repository is a clean version of my AI Engineering Boot Camp (Cohort 6) work. I needed to create this fresh repository for an important security reason.
+
+## The Security Issue
+
+During development of my RAG (Retrieval Augmented Generation) application, I accidentally included my OpenAI API key directly in the code. This happened in a configuration file:
+
+```python
+# The problematic code in the original repository
+OPENAI_API_KEY = "sk-1234567890abcdefghijklmnopqrstuvwxyz"
+```
+
+When I tried to push my code to GitHub, their security scanning correctly blocked the push to protect my API key from being exposed publicly.
+
+## Why a New Repository Was Necessary
+
+Even after removing the API key from the current version of the code, GitHub continued to block the push. This happened because:
+
+1. Git keeps a complete history of all changes
+2. The API key was still present in the repository's history
+3. GitHub scans the entire history, not just the latest version
+
+## The Solution
+
+To solve this issue, I:
+
+1. Created a brand new repository
+2. Copied all my files to a clean folder
+3. Made sure to remove any API keys and use environment variables instead
+4. Added proper `.gitignore` settings to prevent future issues
+5. Initialized a fresh Git history without any sensitive information
+
+This approach gave me a completely clean start without any sensitive information in the Git history.
+
+## What I Learned
+
+This experience taught me several important lessons about security and Git:
+
+1. Never commit API keys or other secrets directly in code
+2. Use environment variables for sensitive information
+3. Add configuration files with secrets to `.gitignore`
+4. Create template files (like `config.template.py`) that show the structure without real credentials
+5. Check what you're committing with `git diff --staged` before each commit
+
+## How I'm Handling API Keys Now
+
+I've switched to using environment variables for all sensitive information:
+
+```python
+# The secure way to handle API keys
+import os
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
+```
+
+This keeps my API keys secure while still allowing the code to function properly.
+
+## About This Project
+
+This repository contains my work for the AI Engineering Boot Camp, including a RAG application that can process both text and PDF files to answer questions based on their content.
+
+---
+
+*Note: If you're working on a similar project, remember to set up your `.gitignore` file and environment variables before making your first commit!*
+
+
 ### [Quicklinks](https://github.com/AI-Maker-Space/AIE6/tree/main/00_AIM_Quicklinks)
 
 | 🤓 Pre-work | 📰 Session Sheet | ⏺️ Recording     | 🖼️ Slides        | 👨‍💻 Repo         | 📝 Homework      | 📁 Feedback       |
